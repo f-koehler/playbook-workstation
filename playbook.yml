@@ -1,0 +1,31 @@
+- name: Setup workstations.
+  hosts: tailscale
+  pre_tasks:
+    - name: Include global variables.
+      ansible.builtin.include_vars:
+        file: "vars/{{ file }}"
+      loop:
+        - secrets.yml
+      loop_control:
+        loop_var: file
+    - name: Get username.
+      ansible.builtin.command: id -un
+      changed_when: false
+      register: username_check
+    - name: Get effective group.
+      ansible.builtin.command: id -gn
+      changed_when: false
+      register: group_check
+    - name: Store username/group.
+      ansible.builtin.set_fact:
+        username: "{{ username_check.stdout }}"
+        group: "{{ group_check.stdout }}"
+  roles:
+    - flathub
+
+    - ansible
+    - cpp
+    - javascript
+    - cli_tools
+
+    - nix

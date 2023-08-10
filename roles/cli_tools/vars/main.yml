@@ -1,0 +1,18 @@
+nixpkgs_tools:
+  - bat
+  - direnv
+  - exa
+  - fzf
+  - gh
+  - git
+  - gnupg
+  - htop
+  - jq
+  - neovim
+  - qpdf
+  - rsync
+  - starship
+  - tmux
+  - wget
+  - zoxide
+  - zsh

@@ -1,0 +1,15 @@
+- name: Install flatpak.
+  ansible.builtin.package:
+    name: flatpak
+    state: present
+  become: true
+  when: ansible_system == 'Linux'
+
+- name: Add flathub repository.
+  community.general.flatpak_remote:
+    name: flathub
+    method: system
+    url: https://flathub.org/repo/flathub.flatpakrepo
+    state: present
+  become: true
+  when: ansible_system == 'Linux'

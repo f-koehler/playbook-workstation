@@ -1,0 +1,6 @@
+- name: Generate config (Mac OS).
+  ansible.builtin.template:
+    src: darwin-configuration.nix.j2
+    dest: ~/.nixpkgs/darwin-configuration.nix
+    owner: "{{ username }}"
+    group: "{{ group }}"

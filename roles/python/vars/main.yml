@@ -1,0 +1,4 @@
+nixpkgs_python:
+  - micromamba
+  - pipx
+  - poetry

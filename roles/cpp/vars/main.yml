@@ -1,0 +1,4 @@
+nixpkgs_cpp:
+  - gcc
+  - clang-tools
+  - cmake
