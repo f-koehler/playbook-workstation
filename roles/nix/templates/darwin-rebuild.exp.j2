@@ -1,0 +1,5 @@
+#!/usr/bin/expect -f
+spawn darwin-rebuild switch
+expect "Password:"
+send -- "{{ ansible_become_password }}\n"
+expect eof

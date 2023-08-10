@@ -4,3 +4,4 @@
     dest: ~/.nixpkgs/darwin-configuration.nix
     owner: "{{ username }}"
     group: "{{ group }}"
+  notify: Rebuild nix (Mac OS).

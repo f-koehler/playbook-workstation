@@ -1,0 +1,2 @@
+- name: Rebuild nix (Mac OS).
+  ansible.builtin.include_tasks: handler-macos.yml
