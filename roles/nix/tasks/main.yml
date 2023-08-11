@@ -1,6 +1,9 @@
 - name: Sort nixpkgs.
   ansible.builtin.set_fact: "{{ nixpkgs | unique | sort }}"
 
-- name: Include tasks (Mac OS).
-  ansible.builtin.include_tasks: macos.yml
-  when: ansible_system == 'Darwin'
+- name: Include tasks.
+  ansible.builtin.include_tasks: "{{ file }}"
+  with_first_found:
+    - "{{ ansible_system | lower }}.yml"
+  loop_control:
+    loop_var: file
