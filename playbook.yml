@@ -20,6 +20,13 @@
       ansible.builtin.set_fact:
         username: "{{ username_check.stdout }}"
         group: "{{ group_check.stdout }}"
+    - name: Determine special directories.
+      ansible.builtin.set_fact:
+        home: "{{ ansible_env.HOME }}"
+        xdg_config_home: "{{ ansible_env.HOME }}/.config"
+        xdg_cache_home: "{{ ansible_env.HOME }}/.cache"
+        xdg_data_home: "{{ ansible_env.HOME }}/.local/share"
+        xdg_state_home: "{{ ansible_env.HOME }}/.local/statstate"
   roles:
     - flathub
 
