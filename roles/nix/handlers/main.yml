@@ -2,4 +2,4 @@
   ansible.builtin.include_tasks: handler-darwin.yml
 
 - name: Rebuild nix (Linux).
-  ansible.builtin.include_tasks: handler-linux.yml
+  ansible.builtin.command: "nix-env -iA nixpkgs.{{ username }}Packages"
