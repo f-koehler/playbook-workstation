@@ -14,5 +14,6 @@ nixpkgs_tools:
   - starship
   - tmux
   - wget
+  - zellij
   - zoxide
   - zsh
