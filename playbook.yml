@@ -180,3 +180,25 @@
         state: present
         method: system
         flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+    # Desktop programs
+    - name: "Flatpak | Install common desktop programs"
+      become: true
+      community.general.flatpak:
+        state: present
+        remote: flathub
+        method: system
+        name:
+          - org.libreoffice.LibreOffice
+          - org.gimp.GIMP
+          - org.inkscape.Inkscape
+          - com.super_productivity.SuperProductivity
+          - org.fkoehler.KTailctl
+          
+    - name: "DNF | Install common desktop programs"
+      become: true
+      ansible.builtin.dnf:
+        state: present
+        name:
+          - vlc
+          - nextcloud-client
