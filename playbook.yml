@@ -180,3 +180,13 @@
         state: present
         method: system
         flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+    # Nix
+    - name: "Nix | Run installer"
+      become: true
+      ansible.builtin.command:
+        cmd: >
+          curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix
+          | sh -s -- install --no-confirm --determinate
+        creates: /nix/var/nix/profiles/default/bin/nix
+
