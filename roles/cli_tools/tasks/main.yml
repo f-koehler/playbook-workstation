@@ -1,3 +1,0 @@
-- name: Set nixpkgs.
-  ansible.builtin.set_fact:
-    nixpkgs: "{{ nixpkgs + nixpkgs_tools }}"

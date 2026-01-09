@@ -1,12 +1,6 @@
 all:
   children:
-    tailscale:
+    workstations:
       hosts:
-        mbp2021:
-          ansible_host: 127.0.0.1
-          ansible_port: 22
-          ansible_user: fkoehler
-    local:
-      hosts:
-        localhost:
-          ansible_connection: local
+        test:
+          ansible_host: 192.168.122.179

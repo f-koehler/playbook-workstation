@@ -1,3 +1,0 @@
-nixpkgs_javascript:
-  - nodejs
-  - yarn

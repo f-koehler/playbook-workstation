@@ -1,6 +1,0 @@
-nixpkgs_ansible:
-  - ansible
-  - ansible-doctor
-  - ansible-language-server
-  - ansible-later
-  - ansible-lint

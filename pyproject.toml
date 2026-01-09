@@ -1,21 +1,14 @@
-[tool.poetry]
-name = "dotfiles"
+[project]
+name = "playbook-workstation"
 version = "0.1.0"
-description = "Playbook for my computers."
-authors = ["Fabian Köhler <me@fkoehler.org>"]
+description = "Add your description here"
 readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "ansible>=13.2.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-ansible = "^11.0.0"
-
-
-[tool.poetry.group.dev.dependencies]
-mypy = "^1.2.0"
-black = "^25.0.0"
-isort = "^6.0.0"
-ansible-lint = { version = "^25.0.0", markers = "platform_system != 'Windows'" }
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "ansible-lint>=26.1.0",
+]
