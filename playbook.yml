@@ -202,3 +202,33 @@
         name:
           - vlc
           - nextcloud-client
+
+    # Jetbrains
+    - name: "Check | Check whether Jetbrains Toolbox is installed"
+      ansible.builtin.stat:
+        path: /home/fkoehler/.local/opt/jetbrains-toolbox/bin/jetbrains-toolbox
+      register: jetbrains_toolbox_check
+
+    - name: "Install Jebtrains Toolbox"
+      when: not jetbrains_toolbox_check.stat.exists
+      block:
+        - name: "Download | Fetch Jetbrains Toolbox"
+          ansible.builtin.get_url:
+            url: "https://download.jetbrains.com/toolbox/jetbrains-toolbox-3.2.0.65851.tar.gz"
+            dest: ~/Downloads/jetbrains-toolbox.tar.gz
+
+        - name: "File | Create Jetbrains Toolbox dir"
+          ansible.builtin.file:
+            path: ~/.local/opt/jetbrains-toolbox
+            state: directory
+
+        - name: "Extract | Extract Jetbains Toolbox"
+          ansible.builtin.unarchive:
+            src: ~/Downloads/jetbrains-toolbox.tar.gz
+            dest: ~/.local/opt/jetbrains-toolbox
+            extra_opts: ["--strip-components=1"]
+
+        - name: "File | Delete Jetbrains Toolbox archive"
+          ansible.builtin.file:
+            src: ~/Downloads/jetbrains-toolbox.tar.gz
+            state: absent
