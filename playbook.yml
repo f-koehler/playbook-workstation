@@ -318,3 +318,17 @@
             src: "{{ homedir }}/Downloads/jetbrains-toolbox.tar.gz"
             state: absent
 
+    # C++
+    - name: "DNF | Install C++ development tools"
+      become: true
+      ansible.builtin.dnf:
+        state: present
+        name:
+          - cmake
+          - gdb
+          - gcc
+          - libomp
+          - clang
+          - make
+          - ninja-build
+
