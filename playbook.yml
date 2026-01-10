@@ -332,3 +332,13 @@
           - make
           - ninja-build
 
+    # Podman
+    - name: "DNF | Install podman"
+      become: true
+      ansible.builtin.dnf:
+        state: present
+        name:
+          - podman
+          - podman-machine
+          - slirp4netns
+          - podman-compose
