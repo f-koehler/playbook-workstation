@@ -275,6 +275,16 @@
           - kpat
           - libreoffice
 
+    # Neovim
+    - name: "Git | Clone neovim-config"
+      ansible.builtin.git:
+        accept_newhostkey: true
+        dest: "{{ homedir }}/.config/nvim"
+        key_file: "{{ homedir }}/.ssh/id_ed25519"
+        remote: origin
+        repo: "git@github.com:f-koehler/neovim-config.git"
+        version: main
+
     # Jetbrains
     - name: "Check | Check whether Jetbrains Toolbox is installed"
       ansible.builtin.stat:
@@ -307,3 +317,4 @@
           ansible.builtin.file:
             src: "{{ homedir }}/Downloads/jetbrains-toolbox.tar.gz"
             state: absent
+
