@@ -32,6 +32,7 @@
         group: "{{ group_check.stdout }}"
         fedora_version: "{{ fedora_version_check.stdout }}"
         hostname: "{{ inventory_hostname }}"
+        homedir: "~"
 
     - name: "System | Set hostname"
       ansible.builtin.hostname:
@@ -219,7 +220,7 @@
     # Jetbrains
     - name: "Check | Check whether Jetbrains Toolbox is installed"
       ansible.builtin.stat:
-        path: /home/fkoehler/.local/opt/jetbrains-toolbox/bin/jetbrains-toolbox
+        path: "{{ homedir }}/.local/opt/jetbrains-toolbox/bin/jetbrains-toolbox"
       register: jetbrains_toolbox_check
 
     - name: "Install Jebtrains Toolbox"
@@ -228,20 +229,23 @@
         - name: "Download | Fetch Jetbrains Toolbox"
           ansible.builtin.get_url:
             url: "https://download.jetbrains.com/toolbox/jetbrains-toolbox-3.2.0.65851.tar.gz"
-            dest: ~/Downloads/jetbrains-toolbox.tar.gz
+            dest: "{{ homedir }}/Downloads/jetbrains-toolbox.tar.gz"
 
         - name: "File | Create Jetbrains Toolbox dir"
           ansible.builtin.file:
-            path: ~/.local/opt/jetbrains-toolbox
+            path: "{{ homedir }}/.local/opt/jetbrains-toolbox"
             state: directory
+            owner: "{{ username }}"
+            group: "{{ group }}"
+            mode: "0755"
 
         - name: "Extract | Extract Jetbains Toolbox"
           ansible.builtin.unarchive:
-            src: ~/Downloads/jetbrains-toolbox.tar.gz
-            dest: ~/.local/opt/jetbrains-toolbox
+            src: "{{ homedir }}/Downloads/jetbrains-toolbox.tar.gz"
+            dest: "{{ homedir }}/.local/opt/jetbrains-toolbox"
             extra_opts: ["--strip-components=1"]
 
         - name: "File | Delete Jetbrains Toolbox archive"
           ansible.builtin.file:
-            src: ~/Downloads/jetbrains-toolbox.tar.gz
+            src: "{{ homedir }}/Downloads/jetbrains-toolbox.tar.gz"
             state: absent
