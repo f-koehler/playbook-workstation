@@ -9,18 +9,24 @@
       loop_control:
         loop_var: file
     - name: Get username.
+
+    # Gather some additional information
+    - name: "User | Get user"
       ansible.builtin.command: id -un
       changed_when: false
       register: username_check
-    - name: Get effective group.
+
+    - name: "User | Get effective group"
       ansible.builtin.command: id -gn
       changed_when: false
       register: group_check
-    - name: Get Fedora version.
+
+    - name: "DNF | Get Fedora version"
       ansible.builtin.command: rpm -E %fedora
       changed_when: false
       register: fedora_version_check
-    - name: Store username/group.
+
+    - name: "Facts | Store gathered information as facts"
       ansible.builtin.set_fact:
         username: "{{ username_check.stdout }}"
         group: "{{ group_check.stdout }}"
