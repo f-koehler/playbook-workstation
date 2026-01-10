@@ -39,6 +39,11 @@
         name: "{{ hostname }}"
         use: "systemd"
 
+    - name: "System | Set timezone"
+      become: true
+      community.general.timezone:
+        name: "Asia/Singapore"
+
   tasks:
     # Fish shell
     - name: "DNF | Install fish"
