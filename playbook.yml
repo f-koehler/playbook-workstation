@@ -34,6 +34,7 @@
         homedir: "~"
 
     - name: "System | Set hostname"
+      become: true
       ansible.builtin.hostname:
         name: "{{ hostname }}"
         use: "systemd"
