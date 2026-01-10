@@ -2,5 +2,6 @@ all:
   children:
     workstations:
       hosts:
-        test:
-          ansible_host: 192.168.122.179
+        desktop:
+          ansible_host: localhost
+          ansible_connection: local
