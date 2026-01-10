@@ -25,6 +25,13 @@
         username: "{{ username_check.stdout }}"
         group: "{{ group_check.stdout }}"
         fedora_version: "{{ fedora_version_check.stdout }}"
+        hostname: "{{ inventory_hostname }}"
+
+    - name: "System | Set hostname"
+      ansible.builtin.hostname:
+        name: "{{ hostname }}"
+        use: "systemd"
+
   tasks:
     # RPM Fusion
     - name: "DNF | Install distribution-gpg-keys"
