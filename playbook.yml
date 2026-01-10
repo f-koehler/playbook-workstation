@@ -72,7 +72,7 @@
         owner: "{{ username }}"
         group: "{{ group }}"
         mode: "0600"
-        path: "{{ homedir }}/.ssh/id_ed22519"
+        path: "{{ homedir }}/.ssh/id_ed25519"
         state: present
         regenerate: partial_idempotence
         type: ed25519
