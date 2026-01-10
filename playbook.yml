@@ -243,6 +243,20 @@
           - vlc
           - nextcloud-client
 
+    - name: "DNF | Uninstall desktop programs"
+      become: true
+      ansible.builtin.dnf:
+        state: absent
+        name:
+          - dragon
+          - elisa-player
+          - firefox
+          - firefox-langpacks
+          - kmahjongg
+          - kmines
+          - kpat
+          - libreoffice
+
     # Jetbrains
     - name: "Check | Check whether Jetbrains Toolbox is installed"
       ansible.builtin.stat:
