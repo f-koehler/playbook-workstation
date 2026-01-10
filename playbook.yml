@@ -40,6 +40,18 @@
         use: "systemd"
 
   tasks:
+    # Fish shell
+    - name: "DNF | Install fish"
+      become: true
+      ansible.builtin.dnf:
+        name: fish
+
+    - name: "User | Set fish as shell"
+      become: true
+      ansible.builtin.user:
+        name: "{{ username }}"
+        shell: "/bin/fish"
+    
     # Generate SSH key
     - name: "File | Create SSH config dir"
       ansible.builtin.file:
