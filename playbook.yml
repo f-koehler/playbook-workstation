@@ -252,6 +252,9 @@
           - org.inkscape.Inkscape
           - com.super_productivity.SuperProductivity
           - org.fkoehler.KTailctl
+          - md.obsidian.Obsidian
+          - org.deskflow.deskflow
+          - net.werwolv.ImHex
           
     - name: "DNF | Install common desktop programs"
       become: true
