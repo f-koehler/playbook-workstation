@@ -334,6 +334,7 @@
           - clang
           - make
           - ninja-build
+          - clang-tools-extra
 
     # Podman
     - name: "DNF | Install podman"
