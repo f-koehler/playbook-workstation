@@ -255,6 +255,7 @@
           - md.obsidian.Obsidian
           - org.deskflow.deskflow
           - net.werwolv.ImHex
+          - info.portfolio_performance.PortfolioPerformance
           
     - name: "DNF | Install common desktop programs"
       become: true
