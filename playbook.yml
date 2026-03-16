@@ -56,7 +56,7 @@
       ansible.builtin.user:
         name: "{{ username }}"
         shell: "/bin/fish"
-    
+
     # Generate SSH key
     - name: "File | Create SSH config dir"
       ansible.builtin.file:
@@ -83,7 +83,7 @@
         name: "{{ username }}@{{ hostname }}"
         token: "{{ github_pat_ssh_keys }}"
         pubkey: "{{ ssh_key.public_key }}"
-    
+
     # RPM Fusion
     - name: "DNF | Install distribution-gpg-keys"
       become: true
@@ -120,11 +120,11 @@
     - name: "DNF | Install RPM Fusion appstream data"
       become: true
       ansible.builtin.dnf:
-        name: 
+        name:
           - rpmfusion-free-appstream-data
           - rpmfusion-nonfree-appstream-data
         state: present
-        
+
     # Virtualisation
     - name: "DNF | Install virtualisation packages"
       become: true
