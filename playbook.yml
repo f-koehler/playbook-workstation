@@ -348,3 +348,20 @@
           - slirp4netns
           - podman-compose
 
+    # Intel oneAPI Base Toolkit
+    - name: "DNF | Add Intel oneAPI repository"
+      become: true
+      ansible.builtin.yum_repository:
+        name: oneAPI
+        description: "Intel® oneAPI repository"
+        baseurl: https://yum.repos.intel.com/oneapi
+        enabled: true
+        gpgcheck: true
+        repo_gpgcheck: true
+        gpgkey: https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+
+    - name: "DNF | Install Intel oneAPI Base Toolkit"
+      become: true
+      ansible.builtin.dnf:
+        name: intel-oneapi-base-toolkit
+        state: present
