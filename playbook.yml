@@ -365,3 +365,27 @@
       ansible.builtin.dnf:
         name: intel-oneapi-base-toolkit
         state: present
+
+    # Terraform
+    - name: "DNF | Add Hashicorp repository"
+      become: true
+      ansible.builtin.yum_repository:
+        name: hashicorp
+        description: "Hashicorp Stable - $basearch"
+        baseurl: "https://rpm.releases.hashicorp.com/fedora/$releasever/$basearch/stable"
+        enabled: true
+        gpgcheck: true
+        gpgkey: "https://rpm.releases.hashicorp.com/gpg"
+    - name: "DNF | Install Terraform"
+      become: true
+      ansible.builtin.dnf:
+        name: terraform
+        state: present
+
+    - name: "DNF | Install perf and tools"
+      become: true
+      ansible.builtin.dnf:
+        state: present
+        name:
+          - perf
+          - flamegraph
