@@ -319,7 +319,7 @@
 
         - name: "File | Delete Jetbrains Toolbox archive"
           ansible.builtin.file:
-            src: "{{ homedir }}/Downloads/jetbrains-toolbox.tar.gz"
+            path: "{{ homedir }}/Downloads/jetbrains-toolbox.tar.gz"
             state: absent
 
     # C++
