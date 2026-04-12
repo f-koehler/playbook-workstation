@@ -389,3 +389,4 @@
         name:
           - perf
           - flamegraph
+          - flamegraph-stackcollapse-perf
