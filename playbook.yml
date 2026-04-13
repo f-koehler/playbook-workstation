@@ -390,3 +390,90 @@
           - perf
           - flamegraph
           - flamegraph-stackcollapse-perf
+
+    # Zed editor
+    - name: "Check | Check whether Zed is installed"
+      ansible.builtin.stat:
+        path: "{{ homedir }}/.local/zed.app/bin/zed"
+      register: zed_check
+
+    - name: "Install Zed"
+      when: not zed_check.stat.exists
+      block:
+        - name: "File | Create Zed temp download dir"
+          ansible.builtin.tempfile:
+            state: directory
+            prefix: zed-
+          register: zed_temp
+
+        - name: "Download | Fetch Zed tarball"
+          ansible.builtin.get_url:
+            url: "https://cloud.zed.dev/releases/stable/latest/download?asset=zed&arch=x86_64&os=linux&source=install.sh"
+            dest: "{{ zed_temp.path }}/zed-linux-x86_64.tar.gz"
+
+        - name: "File | Remove existing Zed app dir"
+          ansible.builtin.file:
+            path: "{{ homedir }}/.local/zed.app"
+            state: absent
+
+        - name: "File | Create ~/.local dir"
+          ansible.builtin.file:
+            path: "{{ homedir }}/.local"
+            state: directory
+            owner: "{{ username }}"
+            group: "{{ group }}"
+            mode: "0755"
+
+        - name: "Extract | Extract Zed tarball"
+          ansible.builtin.unarchive:
+            src: "{{ zed_temp.path }}/zed-linux-x86_64.tar.gz"
+            dest: "{{ homedir }}/.local/"
+            remote_src: true
+
+        - name: "File | Create ~/.local/bin dir"
+          ansible.builtin.file:
+            path: "{{ homedir }}/.local/bin"
+            state: directory
+            owner: "{{ username }}"
+            group: "{{ group }}"
+            mode: "0755"
+
+        - name: "File | Symlink Zed binary"
+          ansible.builtin.file:
+            src: "{{ homedir }}/.local/zed.app/bin/zed"
+            dest: "{{ homedir }}/.local/bin/zed"
+            state: link
+
+        - name: "File | Create ~/.local/share/applications dir"
+          ansible.builtin.file:
+            path: "{{ homedir }}/.local/share/applications"
+            state: directory
+            owner: "{{ username }}"
+            group: "{{ group }}"
+            mode: "0755"
+
+        - name: "File | Copy Zed .desktop file"
+          ansible.builtin.copy:
+            src: "{{ homedir }}/.local/zed.app/share/applications/dev.zed.Zed.desktop"
+            dest: "{{ homedir }}/.local/share/applications/dev.zed.Zed.desktop"
+            remote_src: true
+            owner: "{{ username }}"
+            group: "{{ group }}"
+            mode: "0644"
+
+        - name: "File | Patch .desktop Icon path"
+          ansible.builtin.replace:
+            path: "{{ homedir }}/.local/share/applications/dev.zed.Zed.desktop"
+            regexp: "^Icon=zed$"
+            replace: "Icon={{ homedir }}/.local/zed.app/share/icons/hicolor/512x512/apps/zed.png"
+
+        - name: "File | Patch .desktop Exec path"
+          ansible.builtin.replace:
+            path: "{{ homedir }}/.local/share/applications/dev.zed.Zed.desktop"
+            regexp: "^Exec=zed"
+            replace: "Exec={{ homedir }}/.local/zed.app/bin/zed"
+
+        - name: "File | Remove Zed temp download dir"
+          ansible.builtin.file:
+            path: "{{ zed_temp.path }}"
+            state: absent
