@@ -256,6 +256,7 @@
           - org.deskflow.deskflow
           - net.werwolv.ImHex
           - info.portfolio_performance.PortfolioPerformance
+          - com.bitwarden.desktop
 
     - name: "DNF | Install common desktop programs"
       become: true
