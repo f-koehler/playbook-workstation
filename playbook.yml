@@ -341,6 +341,16 @@
           - clang-tools-extra
           - lcov
 
+    - name: "Git | Clone vcpkg"
+      become: true
+      ansible.builtin.git:
+        accept_newhostkey: true
+        repo: "https://github.com/microsoft/vcpkg.git"
+        version: "2026.03.18"
+        clone: true
+        update: true
+        dest: "{{ homedir }}/vcpkg"
+
     # Podman
     - name: "DNF | Install podman"
       become: true
