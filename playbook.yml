@@ -265,7 +265,7 @@
       ansible.builtin.dnf:
         state: present
         name:
-          - vlc
+          - mpv
           - nextcloud-client
 
     - name: "DNF | Uninstall desktop programs"
