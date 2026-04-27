@@ -339,6 +339,7 @@
           - make
           - ninja-build
           - clang-tools-extra
+          - lcov
 
     # Podman
     - name: "DNF | Install podman"
