@@ -247,17 +247,18 @@
         remote: flathub
         method: system
         name:
-          - org.libreoffice.LibreOffice
+          - com.bitwarden.desktop
+          - com.discordapp.Discord
+          - com.super_productivity.SuperProductivity
+          - info.portfolio_performance.PortfolioPerformance
+          - md.obsidian.Obsidian
+          - net.werwolv.ImHex
+          - org.deskflow.deskflow
+          - org.fkoehler.KTailctl
           - org.gimp.GIMP
           - org.inkscape.Inkscape
-          - com.super_productivity.SuperProductivity
-          - org.fkoehler.KTailctl
-          - md.obsidian.Obsidian
-          - org.deskflow.deskflow
-          - net.werwolv.ImHex
-          - info.portfolio_performance.PortfolioPerformance
-          - com.discordapp.Discord
-          - com.bitwarden.desktop
+          - org.libreoffice.LibreOffice
+          - org.zealdocs.Zeal
 
     - name: "DNF | Install common desktop programs"
       become: true
