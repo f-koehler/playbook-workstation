@@ -259,6 +259,7 @@
           - org.inkscape.Inkscape
           - org.libreoffice.LibreOffice
           - org.zealdocs.Zeal
+          - io.m51.Gelly
 
     - name: "DNF | Install common desktop programs"
       become: true
